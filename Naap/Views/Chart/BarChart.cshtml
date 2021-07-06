@@ -1,0 +1,332 @@
+﻿
+@{    
+    ViewBag.Title = "BarChart";
+    Layout = "~/Views/Shared/_LayoutChart.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card easion-card">
+                <div class="card-header">
+                    <div class="easion-card-icon">
+                        <i class="fas fa-chart-bar fa-2x"></i>
+                    </div>
+                    <div class="easion-card-title StatHeader">前10大連線來源主機</div>
+                </div>
+                <div class="card-body easion-card-body-chart">
+                    <canvas id="priorChartjsBar"></canvas>
+                    <script>
+                     var jsLabelList = @Html.Raw(ViewBag.LabelList);
+                     var jsDataList = @Html.Raw(ViewBag.DataList);
+                        var ctx = document.getElementById('priorChartjsBar');
+                     var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels:jsLabelList ,
+                            datasets: [{
+                                label: '連線筆數',
+                                data:jsDataList,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true, //開啟RWD
+                            title: {
+                                display: false,
+                                text: '前10大連線主機'
+                            },
+                            legend: {
+                                display: true,
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card easion-card">
+                <div class="card-header">
+                    <div class="easion-card-icon">
+                        <i class="fas fa-chart-bar fa-2x"></i>
+                    </div>
+                    <div class="easion-card-title StatHeader">前10大連線目的主機</div>
+                </div>
+                <div class="card-body easion-card-body-chart">
+                    <canvas id="baseChartjsBar"></canvas>
+                    <script>
+                    var jsDestlList = @Html.Raw(ViewBag.destList);
+                     var jsDestData = @Html.Raw(ViewBag.destData);
+                    var ctx = document.getElementById('baseChartjsBar');
+                    var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: jsDestlList ,
+                        datasets: [{
+                            label: '連線筆數',
+                            data:jsDestData,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true, //開啟RWD
+                        title: {
+                            display: false,
+                            text: '前10大連線主機'
+                        },
+                        legend: {
+                            display: true,
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card easion-card">
+                <div class="card-header">
+                    <div class="easion-card-icon">
+                        <i class="fas fa-chart-bar fa-2x"></i>
+                    </div>
+                    <div class="easion-card-title StatHeader">前10大連線服務埠</div>
+                </div>
+                <div class="card-body easion-card-body-chart">
+                    <canvas id="portChartjsBar"></canvas>
+                    <script>
+                     var jsPortlList = @Html.Raw(ViewBag.PortList);
+                     var jsSerDataList = @Html.Raw(ViewBag.ServiceList);
+                        var ctx = document.getElementById('portChartjsBar');
+                     var myChart = new Chart(ctx, {
+                         type: 'pie',
+                        data: {
+                            labels: jsPortlList ,
+                            datasets: [{
+                                label: '連線筆數',
+                                data: jsSerDataList,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)',
+                                    'rgba(62, 149, 205, 0.2)',
+                                    'rgba(233, 56, 11, 0.2)',
+                                    'rgba(142, 94, 162, 0.2)',
+                                    'rgba(232, 195, 185, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)',
+                                    'rgba(62, 149, 205, 1)',
+                                    'rgba(233, 56, 11,1)',
+                                    'rgba(142, 94, 162, 1)',
+                                    'rgba(232, 195, 185, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true, //開啟RWD
+                            title: {
+                                display: false,
+                                text: '前10大連線主機'
+                            },
+                            legend: {
+                                display: true,
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card easion-card">
+                <div class="card-header">
+                    <div class="easion-card-icon">
+                        <i class="fas fa-chart-bar fa-2x"></i>
+                    </div>
+                    <div class="easion-card-title StatHeader">前10大連線服務</div>
+                </div>
+                <div class="card-body easion-card-body-chart">
+                    <canvas id="dscChartjsBar"></canvas>
+                    <script>
+                    var PortList1 = @Html.Raw(ViewBag.PortList1);
+                    var ServiceList1 = @Html.Raw(ViewBag.ServiceList1);
+                    var ctx = document.getElementById('dscChartjsBar');
+                    var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: PortList1 ,
+                        datasets: [{
+                            label: '連線筆數',
+                            data: ServiceList1,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(62, 149, 205, 0.2)',
+                                'rgba(233, 56, 11, 0.2)',
+                                'rgba(142, 94, 162, 0.2)',
+                                'rgba(232, 195, 185, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(62, 149, 205, 1)',
+                                'rgba(233, 56, 11,1)',
+                                'rgba(142, 94, 162, 1)',
+                                'rgba(232, 195, 185, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true, //開啟RWD
+                        title: {
+                            display: false,
+                            text: '前10大連線服務'
+                        },
+                        legend: {
+                            display: true,
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card easion-card">
+                <div class="card-header">
+                    <div class="easion-card-icon">
+                        <i class="fas fa-chart-bar fa-2x"></i>
+                    </div>
+                    <div class="easion-card-title StatHeader">前10大網路威脅</div>
+                </div>
+                <div class="card-body easion-card-body-chart">
+                    <canvas id="AttChartjsBar"></canvas>
+                    <script>
+                    var jsAttlList = @Html.Raw(ViewBag.AttList);
+                     var jsAtttData = @Html.Raw(ViewBag.AttDate);
+                     var ctx = document.getElementById('AttChartjsBar');
+                    var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: jsAttlList ,
+                        datasets: [{
+                            label: '威脅筆數',
+                            data: jsAtttData,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true, //開啟RWD
+                        title: {
+                            display: false,
+                            text: '前10大網路威脅'
+                        },
+                        legend: {
+                            display: true,
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

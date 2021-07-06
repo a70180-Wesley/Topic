@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>@AppService.AppName</h1>
+    <p class="lead">
+        本平台主在顯示區域網路內各連線設備網路使用分析。
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-4 text-center">
+        <a href="@Url.Action("Join", "Order")" title="網路活動總覽">
+            <img src="@Url.Content("~/images/app/internet_activity.png")" />
+            <h2>網路活動總覽</h2>
+        </a>
+    </div>
+    <div class="col-md-4 text-center">
+        <a href="@Url.Action("MyOrderList", "Order")" title="歷史紀錄查詢">
+            <img src="@Url.Content("~/images/app/history_data.png")" />
+            <h2>歷史紀錄查詢</h2>
+        </a>
+    </div>
+    <div class="col-md-4 text-center">
+        <a href="@Url.Action("Create", "Order")" title="活動分析圖">
+            <img src="@Url.Content("~/images/app/analysis.png")" />
+            <h2>活動分析圖</h2>
+        </a>
+    </div>
+    <div class="col-md-4 text-center">
+        <a href="@Url.Action("ManageList", "Order")" title="網路威脅警示">
+            <img src="@Url.Content("~/images/app/threat.png")" />
+            <h2>網路威脅警示</h2>
+        </a>
+    </div>
+    <div class="col-md-4 text-center">
+        <a href="@Url.Action("List", "Shop")" title="會員資料管理">
+            <img src="@Url.Content("~/images/app/data_manage.png")" />
+            <h2>會員資料管理</h2>
+        </a>
+    </div>
+   
+</div>

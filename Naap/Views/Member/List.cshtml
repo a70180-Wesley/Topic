@@ -1,0 +1,110 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@using DevStudio.Securitys;
+
+@model IEnumerable<Naap.Models.member>
+@{
+    ViewBag.Title = "List";
+}
+<div class="row">
+    <div class="panel panel-default box-shadow">
+        <div class="panel-heading">
+            <span class="text-primary text-header">使用者資料列表</span>
+            <span class="text-muted pull-right today" title="Today"></span>
+        </div>
+        <div class="panel-body">
+            @if (string.Compare(Convert.ToString(MemberAccount.Role), "Admin") == 0)
+            {
+                <p>
+                    @Html.ActionLink("新增使用者", "Create", "Member", null, new { @class = "btn btn-success" })
+                </p>
+            }
+            <table class="table">
+                <tr>
+                    <th>
+                        會員帳號
+                    </th>
+                    <th>
+                        會員名稱
+                    </th>
+                    <th>
+                        權限
+                    </th>
+                    <th>
+                        性別
+                    </th>
+                    <th>
+                        電子信箱
+                    </th>
+                    <th>
+                        Line ID
+                    </th>
+                    <th>
+                        出生日期
+                    </th>
+                    <th>
+                        建檔時間
+                    </th>
+                    <th>
+                        核准
+                    </th>
+                    @if (string.Compare(Convert.ToString(MemberAccount.Role), "Admin") == 0)
+                    {
+                        <th>
+                            備註
+                        </th>
+                    }
+                        <th></th>
+                    </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.mno)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.mname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.code_role)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.code_gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email_member)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.line_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.date_birth)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.date_create)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.is_valid)
+                        </td>
+                        @if (string.Compare(Convert.ToString(MemberAccount.Role), "Admin") == 0)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.remark)
+                            </td>
+                        }
+                        <td>
+                            @Html.ActionLink("修改", "Edit", new { id = item.rowid }, new { @class = "btn btn-primary" })
+                            @if (string.Compare(Convert.ToString(MemberAccount.Role), "Admin") == 0)
+                            {
+                                @Html.ActionLink("刪除", "Delete", new { id = item.rowid }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?')" })
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+            @Html.PagedListPager((IPagedList)Model, x => Url.Action("List", new { page = x }))
+
+        </div>
+    </div>
+</div>

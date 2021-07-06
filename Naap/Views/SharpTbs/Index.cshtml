@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Naap.Models.SharpTb>
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>即時網路活動總覽</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SourceIP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SourceMac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SourcePort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DestIP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DestMac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DestPort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromNet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Protocol)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceIP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceMac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourcePort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DestIP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DestMac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DestPort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromNet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Protocol)
+            </td>
+            <td>
+                @if (string.Compare(Convert.ToString(MemberAccount.Role), "Admin") == 0)
+                {
+                    @*@Html.ActionLink("修改", "Edit", new { id = item.seq }, new { @class = "btn btn-warning" })*@
+                    @Html.ActionLink("刪除", "Delete", new { id = item.seq }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?')" })
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<div id="Paging" style="text-align:center">
+    @Html.PagedListPager((IPagedList)Model, x => Url.Action("index", new { page = x }))
+</div>

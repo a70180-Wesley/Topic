@@ -1,0 +1,74 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IEnumerable<Naap.Models.attcheck>
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_LayoutChart.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table" >
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.adate)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.SourceIP)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.DestIP)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.atimes)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.is_valid)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.attType)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.adate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceIP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DestIP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.atimes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.is_valid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.attType)
+            </td>
+            <td>
+                @if (string.Compare(Convert.ToString(MemberAccount.Role), "Admin") == 0)
+                {
+                    @Html.ActionLink("修改", "Edit", new { id = item.sno }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("刪除", "Delete", new { id = item.sno }, new { @class = "btn btn-danger", onclick = "return confirm('是否確定要刪除?')" })
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<div id="Paging" style="text-align:center">
+    @Html.PagedListPager((IPagedList)Model, x => Url.Action("index", new { page = x }))
+</div>

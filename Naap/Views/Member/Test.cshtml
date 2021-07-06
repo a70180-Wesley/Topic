@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+}
+
+
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script>
+        function Auth() {
+            var URL = 'https://notify-bot.line.me/oauth/authorize?';
+            URL += 'response_type=code';
+            URL += '&client_id=你的Client_id';
+            URL += '&redirect_uri=http://localhost:13889/index.html';
+            URL += '&scope=notify';
+            URL += '&state=abcde';
+
+            window.location.href = URL;
+        }
+    </script>
+</head>
+<body>
+    <button onclick="Auth();">點選這裡連結到LineNotify</button>
+</body>
+</html>

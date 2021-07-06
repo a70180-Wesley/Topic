@@ -1,0 +1,55 @@
+﻿@{
+    string str_container = "container";
+    if (MemberAccount.Role == EnumList.LoginRole.Admin) { str_container = "container-fluid"; }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @AppService.AppName</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+    <link rel="icon" href="@Url.Content("~/small.ico")" />
+    <link href="@Url.Content("~/Content/Chart.min.css")" rel="stylesheet" />  
+    <link href="@Url.Content("~/DatetimePicker/css/bootstrap-datetimepicker.min.css")" rel="stylesheet" media="screen">
+    <script src="@Url.Content("~/Scripts/Chart.min.js")"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top position-static">
+        <div class="@str_container">
+            @Html.Partial("~/Views/Shared/_PartialBannerHeader.cshtml")
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    @if (MemberAccount.Role == EnumList.LoginRole.Admin)
+                    {
+                        @*@Html.Partial("~/Views/Shared/_PartialMenuAdmin.cshtml")*@
+                        @Html.Partial("~/Views/Shared/_PartialMenuCommon.cshtml")
+                    }
+                    @if (MemberAccount.Role == EnumList.LoginRole.Member)
+                    {
+                        @*@Html.Partial("~/Views/Shared/_PartialMenuMember.cshtml")*@
+                        @Html.Partial("~/Views/Shared/_PartialMenuCommon.cshtml")
+                    }
+                    @if (MemberAccount.Role == EnumList.LoginRole.Guest)
+                    {
+                        @Html.Partial("~/Views/Shared/_PartialMenuGuest.cshtml")
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="@str_container body-content">
+        @RenderBody()
+        <hr />
+        @Html.Partial("~/Views/Shared/_PartialFooter.cshtml")
+    </div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+﻿@using Naap.Models;
+
+@{
+    ViewBag.Title = "BarChart01";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div class="container-fluid">*@
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card easion-card">
+            <div class="card-header">
+                <div class="easion-card-icon">
+                    <i class="fas fa-chart-bar fa-2x"></i>
+                </div>
+                <div class="easion-card-title StatHeader">前10大連線來源主機</div>
+            </div>
+            <div class="card-body easion-card-body-chart">
+                <canvas id="priorChartjsBar"></canvas>
+                <script>
+                     var jsLabelList = @Html.Raw(ViewBag.LabelList);
+                     var jsDataList = @Html.Raw(ViewBag.DataList);
+                        var ctx = document.getElementById('priorChartjsBar').getContext('2d');
+                     var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels:jsLabelList ,
+                            datasets: [{
+                                label: '連線筆數',
+                                data:jsDataList,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true, //開啟RWD
+                            title: {
+                                display: false,
+                                text: '前10大連線主機'
+                            },
+                            legend: {
+                                display: true,
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card easion-card">
+            <div class="card-header">
+                <div class="easion-card-icon">
+                    <i class="fas fa-chart-bar fa-2x"></i>
+                </div>
+                <div class="easion-card-title StatHeader">test</div>
+            </div>
+            <div class="card-body easion-card-body-chart">
+                <canvas id="baseChartjsBar"></canvas>
+                <script>
+                    var PortList1 = @Html.Raw(ViewBag.PortList1);
+                    var ServiceList1 = @Html.Raw(ViewBag.ServiceList1);
+                    var ctx = document.getElementById('baseChartjsBar');
+                    var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: PortList1 ,
+                        datasets: [{
+                            label: '連線筆數',
+                            data: ServiceList1,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true, //開啟RWD
+                        title: {
+                            display: true,
+                            text: '前10大連線服務'
+                        },
+                        legend: {
+                            display: true,
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

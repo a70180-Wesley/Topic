@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SharpDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="attcheck">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adate" Type="datetime" />
+          <Property Name="SourceIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="DestIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="atimes" Type="int" />
+          <Property Name="is_valid" Type="int" />
+          <Property Name="attType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mno" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="code_role" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="code_gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email_member" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="line_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_birth" Type="date" Nullable="false" />
+          <Property Name="date_create" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="is_valid" Type="int" Nullable="false" />
+          <Property Name="code_valid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="PortList">
+          <Key>
+            <PropertyRef Name="roid" />
+          </Key>
+          <Property Name="roid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="protocol" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="port" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SharpTb">
+          <Key>
+            <PropertyRef Name="seq" />
+          </Key>
+          <Property Name="seq" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataTime" Type="datetime" />
+          <Property Name="SourceIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="SourceMac" Type="nvarchar" MaxLength="50" />
+          <Property Name="SourcePort" Type="varchar" MaxLength="50" />
+          <Property Name="DestIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="DestMac" Type="nvarchar" MaxLength="50" />
+          <Property Name="DestPort" Type="int" />
+          <Property Name="FromNet" Type="nvarchar" MaxLength="50" />
+          <Property Name="Protocol" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UseTable">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HostName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" />
+          <Property Name="MAC" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="SharpDbModelStoreContainer">
+          <EntitySet Name="attcheck" EntityType="Self.attcheck" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PortList" EntityType="Self.PortList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SharpTb" EntityType="Self.SharpTb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UseTable" EntityType="Self.UseTable" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SharpDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SharpDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SharpTb" EntityType="SharpDbModel.SharpTb" />
+          <EntitySet Name="UseTable" EntityType="SharpDbModel.UseTable" />
+          <EntitySet Name="attcheck" EntityType="SharpDbModel.attcheck" />
+          <EntitySet Name="sysdiagrams" EntityType="SharpDbModel.sysdiagrams" />
+          <EntitySet Name="member" EntityType="SharpDbModel.member" />
+          <EntitySet Name="PortList" EntityType="SharpDbModel.PortList" />
+        </EntityContainer>
+        <EntityType Name="SharpTb">
+          <Key>
+            <PropertyRef Name="seq" />
+          </Key>
+          <Property Name="seq" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataTime" Type="DateTime" Precision="3" />
+          <Property Name="SourceIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SourceMac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SourcePort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DestIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DestMac" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DestPort" Type="Int32" />
+          <Property Name="FromNet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Protocol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UseTable">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HostName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MAC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="attcheck">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adate" Type="DateTime" Precision="3" />
+          <Property Name="SourceIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DestIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="atimes" Type="Int16" />
+          <Property Name="is_valid" Type="Int32" />
+          <Property Name="attType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="code_role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="code_gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email_member" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="line_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_birth" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="date_create" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="is_valid" Type="Int32" Nullable="false" />
+          <Property Name="code_valid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PortList">
+          <Key>
+            <PropertyRef Name="roid" />
+          </Key>
+          <Property Name="roid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="protocol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="port" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SharpDbModelStoreContainer" CdmEntityContainer="SharpDbEntities">
+          <EntitySetMapping Name="SharpTb">
+            <EntityTypeMapping TypeName="SharpDbModel.SharpTb">
+              <MappingFragment StoreEntitySet="SharpTb">
+                <ScalarProperty Name="Protocol" ColumnName="Protocol" />
+                <ScalarProperty Name="FromNet" ColumnName="FromNet" />
+                <ScalarProperty Name="DestPort" ColumnName="DestPort" />
+                <ScalarProperty Name="DestMac" ColumnName="DestMac" />
+                <ScalarProperty Name="DestIP" ColumnName="DestIP" />
+                <ScalarProperty Name="SourcePort" ColumnName="SourcePort" />
+                <ScalarProperty Name="SourceMac" ColumnName="SourceMac" />
+                <ScalarProperty Name="SourceIP" ColumnName="SourceIP" />
+                <ScalarProperty Name="DataTime" ColumnName="DataTime" />
+                <ScalarProperty Name="seq" ColumnName="seq" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UseTable">
+            <EntityTypeMapping TypeName="SharpDbModel.UseTable">
+              <MappingFragment StoreEntitySet="UseTable">
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+                <ScalarProperty Name="sn" ColumnName="sn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="attcheck">
+            <EntityTypeMapping TypeName="SharpDbModel.attcheck">
+              <MappingFragment StoreEntitySet="attcheck">
+                <ScalarProperty Name="attType" ColumnName="attType" />
+                <ScalarProperty Name="is_valid" ColumnName="is_valid" />
+                <ScalarProperty Name="atimes" ColumnName="atimes" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="DestIP" ColumnName="DestIP" />
+                <ScalarProperty Name="SourceIP" ColumnName="SourceIP" />
+                <ScalarProperty Name="adate" ColumnName="adate" />
+                <ScalarProperty Name="sno" ColumnName="sno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SharpDbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="member">
+            <EntityTypeMapping TypeName="SharpDbModel.member">
+              <MappingFragment StoreEntitySet="member">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="code_valid" ColumnName="code_valid" />
+                <ScalarProperty Name="is_valid" ColumnName="is_valid" />
+                <ScalarProperty Name="date_create" ColumnName="date_create" />
+                <ScalarProperty Name="date_birth" ColumnName="date_birth" />
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+                <ScalarProperty Name="email_member" ColumnName="email_member" />
+                <ScalarProperty Name="code_gender" ColumnName="code_gender" />
+                <ScalarProperty Name="code_role" ColumnName="code_role" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="mname" ColumnName="mname" />
+                <ScalarProperty Name="mno" ColumnName="mno" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PortList">
+            <EntityTypeMapping TypeName="SharpDbModel.PortList">
+              <MappingFragment StoreEntitySet="PortList">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="port" ColumnName="port" />
+                <ScalarProperty Name="protocol" ColumnName="protocol" />
+                <ScalarProperty Name="roid" ColumnName="roid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

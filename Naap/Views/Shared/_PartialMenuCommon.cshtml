@@ -1,0 +1,11 @@
+﻿<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label"><i class="fa fa-user-o fa-fw"></i>@MemberAccount.MemberName</span> <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        <li class="submenu-item ">
+                @Html.ActionLink("登出系統", "Login", "Member", null, new { @class = "fa fa-sign-out" })
+        </li>
+        <li class="submenu-item ">
+            @Html.ActionLink("重設密碼", "ResetPassword", "Member", null, new { @class = "fa fa-unlock-alt" })
+        </li>
+    </ul>
+</li>

@@ -1,0 +1,9 @@
+﻿@model Naap.Models.NetWorkActiveViewModel
+
+@*
+    第一個參數：html屬性: name 的值 ,
+    第二個參數：下拉選單: value/text 的值 ,
+    第三個參數：html屬性 class 的值
+*@
+
+@Html.DropDownListFor(m => m.Protocol, Model.ProtocolList, new { @class = "form-control" })
